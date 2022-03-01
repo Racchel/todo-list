@@ -17,6 +17,7 @@ export const ButtonContent = styled.div`
 `
 
 export const Button = styled.button`
+   width: ${props => props.width? props.width : ''};
    background-color: ${props => props.bgColor? props.bgColor : 'none'};
    border: none;
    border-radius: 3px;

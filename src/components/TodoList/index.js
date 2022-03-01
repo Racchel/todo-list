@@ -21,7 +21,6 @@ export default class TodoList extends Component {
     
     this.state = {
       todo: '',
-      todoListRender: [],
       todoList: [],
       listFilteredByDone: [],
       listFilteredByTodo: [],
@@ -38,12 +37,8 @@ export default class TodoList extends Component {
 
   addTodo = (e) => {
     e.preventDefault()
-    console.log(e)
-    console.log('entrou no addTodo')
 
     const { todoList, todo } = this.state
-    console.log('Todo do state: ')
-    console.log(todo)
 
     if (todo === '') return 
 
@@ -101,12 +96,10 @@ export default class TodoList extends Component {
     })
   }
 
-
   render() {
     return (
 
       <Container>
-
         <Header>
           <Title> Lista de Tarefas </Title>
         </Header>
@@ -149,8 +142,12 @@ export default class TodoList extends Component {
           
           <ItemsContent>
             { 
-              this.state.filterDone
-              ? this.state.listFilteredByDone.map((item) => (
+              this.state.filterDone && this.state.filterToDo ?
+              this.state.todoList.map((item) => (              
+                <Todo key={item.id} item={item} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
+              ))
+              : this.state.filterDone ?
+              this.state.listFilteredByDone.map((item) => (
                 <Todo key={item.id} item={item} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
               ))
               : this.state.filterToDo ?

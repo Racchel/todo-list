@@ -24,6 +24,7 @@ export default class Todo extends Component {
                <Button 
                   onClick={() => (this.checkTodo(this.item.id))}
                   bgColor={ this.item.isDone? 'green': 'red' }
+                  width='4rem'
                >
                { this.item.isDone? 'Feito': 'A fazer' }
                </Button>
