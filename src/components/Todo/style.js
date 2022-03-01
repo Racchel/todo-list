@@ -31,3 +31,12 @@ export const Button = styled.button`
    color: #fff;
    margin-left: 5px;
 `
+
+export const InputColor = styled.input`
+   width: 1.5rem;
+   min-height: 1.5rem;
+   outline: none;
+   border: none;
+   background-color:transparent;
+   margin-right: 5px;
+`

@@ -87,8 +87,8 @@ export const Add = styled.img`
 `
 
 export const ItemsContent = styled.ul`
-   width: 55%;
+   width: 80%;
    height: 100%;
-   margin-top: 20px;
+   margin-top: 3rem;
    position: relative;
 `

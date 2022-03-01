@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Item, ButtonContent, Button } from './style'
+import { Item, ButtonContent, Button, InputColor } from './style'
 
 export default class Todo extends Component {
 
@@ -14,9 +14,13 @@ export default class Todo extends Component {
    render() {
       return (
          <Item key={this.item.id}>
+            <InputColor type="color" />
+
             <p>{ this.item.todo }</p>
 
             <ButtonContent>
+               <input type="date"/>
+
                <Button onClick={() => (this.editTodo(this.item, this.key))}>
                ✏️
                </Button>
