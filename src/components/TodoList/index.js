@@ -35,8 +35,7 @@ export default class TodoList extends Component {
     })
   }
 
-  addTodo = (e) => {
-    e.preventDefault()
+  addTodo = () => {
 
     const { todoList, todo } = this.state
 
@@ -54,7 +53,20 @@ export default class TodoList extends Component {
     })
   }
 
+  editTodo = (item, key) => {
+    const { todoList } = this.state
+ 
+    item.todo = prompt(`Qual a alteração em ${item.todo}: `)
+    todoList[key] = item
+
+    this.setState({ todoList: todoList })
+  }
+
   removeTodo = (id) => {
+    // eslint-disable-next-line no-restricted-globals
+    const resp = confirm('Deseja realmente excluir esse item?')
+    console.log(resp)
+
     const { todoList } = this.state
 
     this.setState({
@@ -96,6 +108,13 @@ export default class TodoList extends Component {
     })
   }
 
+  addEnter = (e) => {
+    
+    if(e.keyCode === 13) {
+      this.addTodo()
+    }
+  }
+
   render() {
     return (
 
@@ -104,7 +123,7 @@ export default class TodoList extends Component {
           <Title> Lista de Tarefas </Title>
         </Header>
 
-        <Form onSubmit={this.addTodo}>
+        <Form onSubmit={this.addTodo} onKeyDown={(e) => this.addEnter(e)}>
           
           <HeaderContent>
             <Input 
@@ -143,19 +162,19 @@ export default class TodoList extends Component {
           <ItemsContent>
             { 
               this.state.filterDone && this.state.filterToDo ?
-              this.state.todoList.map((item) => (              
-                <Todo key={item.id} item={item} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
+              this.state.todoList.map((item, index) => (              
+                <Todo key={index} item={item} editTodo={this.editTodo} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
               ))
               : this.state.filterDone ?
-              this.state.listFilteredByDone.map((item) => (
-                <Todo key={item.id} item={item} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
+              this.state.listFilteredByDone.map((item, index) => (
+                <Todo key={index} item={item} editTodo={this.editTodo} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
               ))
               : this.state.filterToDo ?
-              this.state.listFilteredByTodo.map((item) => (              
-                <Todo key={item.id} item={item} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
+              this.state.listFilteredByTodo.map((item,index) => (              
+                <Todo key={index} item={item} editTodo={this.editTodo} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
               ))
-              : this.state.todoList.map((item) => (              
-                <Todo key={item.id} item={item} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
+              : this.state.todoList.map((item, index) => (              
+                <Todo key={index} item={item} editTodo={this.editTodo} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
               ))
             }
           </ItemsContent>

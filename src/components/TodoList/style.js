@@ -21,7 +21,8 @@ export const Title = styled.h1`
    font-size: 1.3rem;
 `
 
-export const Form = styled.form`
+// tá dando bug usando form
+export const Form = styled.div`
    width: 80%;
    height: 500px;
    border: 1px solid #f6f6f6;
@@ -86,7 +87,7 @@ export const Add = styled.img`
 `
 
 export const ItemsContent = styled.ul`
-   width: 45%;
+   width: 55%;
    height: 100%;
    margin-top: 20px;
    position: relative;

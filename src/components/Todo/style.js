@@ -2,13 +2,19 @@ import styled from 'styled-components';
 
 export const Item = styled.li`
    width: 100%;
-   height: 2.5rem;
+   min-height: 2.5rem;
    display: flex;
    align-items: center;
-   text-align: center;
-   padding: 0 10px;
+   padding: 2px 10px;
    margin-bottom: 10px;
    border: 1px solid gray;
+
+   & p {
+      width: 60%;
+      overflow-wrap: break-word;
+      text-align: left;
+      font-size: 12px;
+   }
 `
 
 export const ButtonContent = styled.div`
