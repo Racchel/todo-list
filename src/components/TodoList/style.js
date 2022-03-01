@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-   width: 100vw;
-   height: 100vh;
+   width: 100%;
    display: flex;
    flex-direction: column;
    justify-content: flex-start;
@@ -24,14 +23,15 @@ export const Title = styled.h1`
 
 export const Form = styled.form`
    width: 80%;
-   height: 80%;
-   border: 1px solid gray;
+   height: 500px;
+   border: 1px solid #f6f6f6;
    display: flex;
    flex-direction: column;
    align-items: center;
    text-align: center;
    padding: 1rem;
    margin-top: 2rem;
+   overflow: scroll;
 `
 
 export const HeaderContent = styled.div`
@@ -44,7 +44,8 @@ export const HeaderContent = styled.div`
 export const CheckContent = styled.div`
    width: 14%;
    display: flex;
-   align-items: center;
+   flex-direction: column;
+   align-items: flex-start;
    position: absolute;
    top: 50%;
    right: 0;
@@ -54,13 +55,18 @@ export const CheckContent = styled.div`
       font-size: 12px;
       margin-left: 5px;
    }
+
+   & div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
 `
 
 export const Input = styled.input`
    width: ${ props => props.width };
    height: 25px;
    border-radius: 3px;
-   border: 1px solid gray;
    outline: none;
    padding-left: 5px;
 `
@@ -84,5 +90,4 @@ export const ItemsContent = styled.ul`
    height: 100%;
    margin-top: 20px;
    position: relative;
-   border: 1px solid gray;
 `

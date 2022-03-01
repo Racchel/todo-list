@@ -21,9 +21,12 @@ export default class TodoList extends Component {
     
     this.state = {
       todo: '',
+      todoListRender: [],
       todoList: [],
-      filteredList: [],
-      filter: false
+      listFilteredByDone: [],
+      listFilteredByTodo: [],
+      filterDone: false,
+      filterToDo: false
     }
   }
 
@@ -77,13 +80,24 @@ export default class TodoList extends Component {
   }
 
   filterByDone = () => {
-    const { filter, todoList } = this.state
+    const { filterDone, todoList } = this.state
     
-    const filteredList = todoList.filter((item) => item.isDone)
+    const listFilteredByDone = todoList.filter((item) => item.isDone)
 
     this.setState({
-      filter: !filter,
-      filteredList: filteredList
+      filterDone: !filterDone,
+      listFilteredByDone: listFilteredByDone
+    })
+  }
+
+  filterToDo = () => {
+    const { filterToDo, todoList } = this.state
+    
+    const listFilteredByTodo = todoList.filter((item) => !item.isDone)
+
+    this.setState({
+      filterToDo: !filterToDo,
+      listFilteredByTodo: listFilteredByTodo
     })
   }
 
@@ -113,19 +127,34 @@ export default class TodoList extends Component {
             />
             
             <CheckContent>
-              <Input 
-                width='18px'
-                type="checkbox" 
-                onClick={() => (this.filterByDone())}
-              /> 
-              <span> Filtrar por concluído </span>
+              <div>
+                <Input 
+                  width='18px'
+                  type="checkbox" 
+                  onClick={() => (this.filterByDone())}
+                /> 
+                <span> Filtrar por feito </span>
+              </div>
+
+              <div>
+                <Input 
+                  width='18px'
+                  type="checkbox" 
+                  onClick={() => (this.filterToDo())}
+                /> 
+                <span> Filtrar por a fazer </span>
+              </div>
             </CheckContent>
           </HeaderContent>
           
           <ItemsContent>
             { 
-              this.state.filter
-              ? this.state.filteredList.map((item) => (
+              this.state.filterDone
+              ? this.state.listFilteredByDone.map((item) => (
+                <Todo key={item.id} item={item} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
+              ))
+              : this.state.filterToDo ?
+              this.state.listFilteredByTodo.map((item) => (              
                 <Todo key={item.id} item={item} removeTodo={this.removeTodo} checkTodo={this.checkTodo}/>
               ))
               : this.state.todoList.map((item) => (              

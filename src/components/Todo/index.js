@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Item, ButtonContent } from './style'
+import { Item, ButtonContent, Button } from './style'
 
 export default class Todo extends Component {
 
@@ -15,13 +15,18 @@ export default class Todo extends Component {
             { this.item.todo } 
 
             <ButtonContent>
-               <button onClick={() => (this.removeTodo(this.item.id))}>
-               ⌫
-               </button> 
+               <Button 
+                  onClick={() => (this.removeTodo(this.item.id))}
+               >
+               🗑
+               </Button> 
 
-               <button onClick={() => (this.checkTodo(this.item.id))}>
+               <Button 
+                  onClick={() => (this.checkTodo(this.item.id))}
+                  bgColor={ this.item.isDone? 'green': 'red' }
+               >
                { this.item.isDone? 'Feito': 'A fazer' }
-               </button>
+               </Button>
             </ButtonContent>
          </Item>
       )
